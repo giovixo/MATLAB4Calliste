@@ -11,6 +11,10 @@
 * Open the MATLAB application on your pc
 * Run mc.m
 
+### Directories ###
+* matlab: MATLAB source code
+* dataset: it contains a short sample data file
+
 ### Author ###
 
 * Giovanni De Cesare: decesare.giovanni@gmail.com
