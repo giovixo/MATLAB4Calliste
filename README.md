@@ -1,29 +1,16 @@
-# README #
+# MATLAB for Cusp #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Purpose ###
 
-### What is this repository for? ###
+* Code for the analysis of the Cusp Monte Carlo data
+* Version 0.1
+* Dependences: MATLAB
 
-* MATLAB for Cusp
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### How to run ###
 
-### How do I get set up? ###
+* Open the MATLAB appication on your pc
+* Run the code
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Author ###
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Giovanni De Cesare: decesare.giovanni@gmail.com
