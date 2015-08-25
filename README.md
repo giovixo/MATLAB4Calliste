@@ -8,7 +8,7 @@
 
 ### How to run ###
 
-* Open the MATLAB appication on your pc
+* Open the MATLAB application on your pc
 * Run mc.m
 
 ### Author ###
