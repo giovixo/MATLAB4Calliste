@@ -9,7 +9,7 @@
 ### How to run ###
 
 * Open the MATLAB appication on your pc
-* Run the code
+* Run mc.m
 
 ### Author ###
 
