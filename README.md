@@ -1,5 +1,8 @@
 # MATLAB for Cusp #
 
+### Contributors ###
+* G. De Cesare
+
 ### Purpose ###
 
 * Code for the analysis of the Cusp Monte Carlo data
