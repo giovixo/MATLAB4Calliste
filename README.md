@@ -6,7 +6,7 @@
 ### Purpose ###
 
 * Code for the analysis of the Cusp Monte Carlo data
-* Release 0.2
+* Release 0.1
 * Dependences: MATLAB
 
 ### How to run ###
