@@ -10,12 +10,15 @@ function [ data ] = mc_read( fileName )
 %   A: data array filled with data contained in file_name
 
     % Constants
+    LOG = false;
     PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set01/';
     MAX_EVENTS = 500; % for testing
     HISTORY_LEN = 51;
     
-    % Display the log message
-    disp('Reading the data file...') 
+    % Display a log message
+    if LOG 
+        disp('Reading the data file...'); 
+    end
 
     % Open the Monte Carlo data file
     [fileID, errMsg] = fopen([PATH fileName],'r');
@@ -26,13 +29,24 @@ function [ data ] = mc_read( fileName )
     end
     
     % Skip the header
-    disp( fgetl(fileID) );
-    disp( fgetl(fileID) );
-    disp( fgetl(fileID) );
-    disp( fgetl(fileID) );
+    h1 = fgetl(fileID);
+    h2 = fgetl(fileID);
+    h3 = fgetl(fileID);
+    h4 = fgetl(fileID);
+    if LOG
+        disp(h1);
+        disp(h2);
+        disp(h3);
+        disp(h4);
+    end
     % Read the raw data into 'A'
     formatSpec = '%d %f %f %f %f';
-    ticID = tic; A = fscanf(fileID, formatSpec, [5 inf]); toc(ticID);
+    if LOG
+        ticID = tic; A = fscanf(fileID, formatSpec, [5 inf]); toc(ticID);
+    else
+        A = fscanf(fileID, formatSpec, [5 inf]);
+    end
+        
     A = A';
     % Prepare fixed format data(i, j, k) to store the event
     % -----------------------------------------------------
