@@ -57,10 +57,6 @@ function [ data ] = mc_read( fileName )
             % Assign the record to the current event
             data(k+1,:, ievent) = A(i+k,:);
         end
-        % Event (B) processing here ...
-        %disp (['Event number: ' num2str(ievent) '   Number of interactions: ' num2str(k)]); % Debug 
-        %disp(B(1:k+1,:, ievent));                                                           % Debug         
-        % Update the index of the row. By +1 if there are not interactions.
         i = i + 1 + k;   
     end
     
