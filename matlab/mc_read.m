@@ -7,7 +7,7 @@ function [ data ] = mc_read( fileName )
 %   Output: A data array filled with data contained in file_name
 
     % Constants
-    PATH = '/Users/giovannidecesare/Works/Cusp/mc-simulation/matlab-for-cusp-detector-mc/dataset/set01/';
+    PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set01/';
     MAX_EVENTS = 500; % for testing
     HISTORY_LEN = 51;
     
