@@ -3,7 +3,7 @@
 ### Purpose ###
 
 * Code for the analysis of the Cusp Monte Carlo data
-* Version 0.1
+* Release 0.1
 * Dependences: MATLAB
 
 ### How to run ###
