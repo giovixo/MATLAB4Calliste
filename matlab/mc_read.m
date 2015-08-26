@@ -1,5 +1,6 @@
 function [ data ] = mc_read( fileName )
 %MC_READ Read the Monte Carlo data file
+%Version:  0.1
 %   Usage:
 %   mc_read(file_name)
 %   Input: file_mame (ascii) The file name
