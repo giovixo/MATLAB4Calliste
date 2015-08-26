@@ -12,7 +12,7 @@ function [ data ] = mc_read( fileName )
     HISTORY_LEN = 51;
     
     % Display the log message
-    disp('Reading the data file ...') 
+    disp('Reading the data file...') 
 
     % Open the Monte Carlo data file
     [fileID, errMsg] = fopen([PATH fileName],'r');
