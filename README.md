@@ -12,7 +12,8 @@
 ### How to run ###
 
 * Open the MATLAB application on your pc
-* Run mc.m
+* Eventually edit mc. file
+* Run mc.m 
 
 ### Directories ###
 * matlab: MATLAB source code
