@@ -1,10 +1,13 @@
 function [ data ] = mc_read( fileName )
-%MC_READ Read the Monte Carlo data file
+%MC_READ - Read the Monte Carlo data file
 %Version:  0.1
-%   Usage:
-%   mc_read(file_name)
-%   Input: file_mame (ascii) The file name
-%   Output: A data array filled with data contained in file_name
+%
+%   This function read a .dat file and return an array wich contains the 
+%   photon history (ie. the energy deposit for each photon).    
+%
+%   A = MC_READ(file_name)
+%   Input: the file name
+%   A: data array filled with data contained in file_name
 
     % Constants
     PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set01/';
