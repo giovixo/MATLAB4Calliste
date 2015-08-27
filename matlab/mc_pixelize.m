@@ -1,17 +1,18 @@
 function [ Apix ] = mc_pixelize( A )
 %MC_PIXELIZE - Pixelize the detector
+%Version: 0.1
 %
 %   This function takes as argument the array A which contain the photon
 %   history in the row CdTe volume and return Apix, the photon history in 
 %   the pixelated detector.
 %
-% Apix = MC_PIXELIZE(A)
-% Input: A is the row 'photons history', i.e. the energy deposits list for
-% each photon.
-% Output: Apix is the pixelated 'photons history' array.
+%   Apix = MC_PIXELIZE(A)
+%   Input: A is the row 'photons history', i.e. the energy deposits list for
+%   each photon.
+%   Output: Apix is the pixelated 'photons history' array.
 
     % The number of input photons
-    size = 500; 
+    size = PAR.EVENTS_NUMBER; 
     % The data matrix containing the pixelated array
     Apix = zeros(20, 5, size);
     % voxel is the matrix containg the energy in each detector voxel 
