@@ -12,7 +12,7 @@ function [ data ] = mc_read( fileName )
     % Constants
     LOG = false;
     PATH = PAR.DATA_PATH;
-    MAX_EVENTS = 500; 
+    MAX_EVENTS = PAR.EVENTS_NUMBER; 
     HISTORY_LEN = 51;
     
     % Display a log message
@@ -61,7 +61,7 @@ function [ data ] = mc_read( fileName )
     % k: number of interactions per event
     i = 1;
     ievent = 0;
-    while ievent <  500
+    while ievent <  MAX_EVENTS
         % Update the index of the event
         ievent = ievent + 1;
         % Set to zero the number of interactions k

@@ -36,7 +36,7 @@ function [ log_text ] = mc_tools1(A, n)
                 e_det(i) = 1000. * sum( A(A(:,2,i) > 0,2,i) );
             end
             % and plot the spectrum
-            [spec, xout]=hist(e_det,10);
+            [spec, xout]=hist(e_det,100);
             loglog(xout, spec,'r');
             grid;
             title('Detected spectrum');
