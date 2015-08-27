@@ -43,6 +43,9 @@ function [ log_text ] = mc_tools1(A, n)
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);
             log_text = 'The detected spectrum is ready.';
+        otherwise
+            disp('> Error: the index is not valid. Try <help mc_tools1> for help');
+            log_text = 'Error';
     end
     
 end
