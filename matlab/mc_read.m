@@ -12,7 +12,7 @@ function [ data ] = mc_read( fileName )
     % Constants
     LOG = false;
     PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set01/';
-    MAX_EVENTS = 500; % for testing
+    MAX_EVENTS = 500; 
     HISTORY_LEN = 51;
     
     % Display a log message

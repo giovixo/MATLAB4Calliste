@@ -12,7 +12,7 @@
 ### How to run ###
 
 * Open the MATLAB application on your pc
-* Eventually edit mc. file
+* Eventually edit mc.m file
 * Run mc.m 
 
 ### Directories ###

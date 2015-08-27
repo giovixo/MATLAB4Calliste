@@ -30,28 +30,17 @@ function [ Apix ] = mc_pixelize( A )
         nn = mod(n, 1.e4);
         jj  = 1 + fix(nn/100);
         ii = mod(nn, 100);
-        %index = [voxel(voxel > 0), ii, jj, kk];
-        %disp(i);
-        %disp( index );
         % Fill the pixelated photon list
-        n_int = length(voxel(voxel > 0)); %length(index(:,1));
+        n_int = length(voxel(voxel > 0)); 
         detection = [ones(n_int,1)*i, voxel(voxel > 0), ii, jj, kk];
-        %disp(detection);
-        % Print the incident voxel
-        %index2 = [A(j+1, 2, i), ivox];
-        %disp(index2);
         if j >= 1
-            % ivox = fix( ( A(j+1, 3:5, i) + 100. ) / 2 + 1);
             ivox = fix( ( A(j+1, 3:5, i) + [99.999,99.999, 9.999] ) / 2 ) + 1;
             photon = [i, A(j+1, 2, i), ivox];
         else
-%        ivox = fix( ( A(1, 3:5, i) + 100. ) / 2 + 1);
             ivox = fix( ( A(1, 3:5, i) + [99.999,99.999, 9.999] ) / 2 ) + 1;
             photon = [i, A(1, 2, i), ivox];
         end
-        %disp(photon);
         event = vertcat(detection, photon);
-        %disp(event);
         % It fills the Apix pixelated events data array
         Apix(1:length(event(:,1)),:,i) = event;
     end
