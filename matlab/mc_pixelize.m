@@ -3,7 +3,7 @@ function [ Apix ] = mc_pixelize( A )
 %Version: 0.1
 %
 %   This function takes as argument the array A which contain the photon
-%   history in the row CdTe volume and return Apix, the photon history in 
+%   history in the raw CdTe volume and return Apix, the photon history in 
 %   the pixelated detector.
 %
 %   Apix = MC_PIXELIZE(A)
