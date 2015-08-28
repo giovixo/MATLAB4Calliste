@@ -23,11 +23,11 @@ function [ log_text ] = mc_tools1(A, n)
             % and plot the spectrum
             [spec, xout]=hist(e_inp,10);
             loglog(xout, spec);
-            grid;
+            grid on;
             title('Input spectrum');
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);
-            log_text = 'The input spectrum is ready.';
+            log_text = '> The input spectrum is ready.';
         case 2
             % Read the detected energy
             size = PAR.EVENTS_NUMBER; 
@@ -38,14 +38,13 @@ function [ log_text ] = mc_tools1(A, n)
             % and plot the spectrum
             [spec, xout]=hist(e_det,100);
             loglog(xout, spec,'r');
-            grid;
+            grid on;
             title('Detected spectrum');
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);
-            log_text = 'The detected spectrum is ready.';
+            log_text = '> The detected spectrum is ready.';
         otherwise
-            disp('> Error: the index is not valid. Try <help mc_tools1> for help');
-            log_text = 'Error';
+            log_text = '> Error: the index is not valid. Try <help mc_tools1> for help';
     end
     
 end
