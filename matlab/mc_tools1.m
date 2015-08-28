@@ -44,7 +44,7 @@ function [ log_text ] = mc_tools1(A, n)
             ylabel('Photons','fontsize',14);
             log_text = '> The detected spectrum (red line) is ready.';
         otherwise
-            log_text = '> Error: the index is not valid. Try <help mc_tools1> for help';
+            log_text = '> Error: wrong index. Try <help mc_tools1> for help';
     end
     
 end
