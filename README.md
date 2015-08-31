@@ -30,4 +30,21 @@ In step 2 the energy deposits are sampled in a pixelated detector. We call these
 
 The parameters of the run are stored into the PAR.m class.
 
+### Example ###
 
+```
+#!matlab
+% Read a file and return the data array A
+A = mc_read('01PolCrabCusp.dat'); 
+
+%% Level 1 analysis example (see 'help mc_tools1' for more)
+log_text = mc_tools1(A, 1);
+disp(log_text);
+
+%% Step 2: Convert A into a 'photons history' into the 'pixelated photon history' Apix
+Apix = mc_pixelize(A);
+
+%% Level 2 analysis example (see 'help mc_tools2' for more)
+log_text = mc_tools2(A, 1);
+disp(log_text);
+```
