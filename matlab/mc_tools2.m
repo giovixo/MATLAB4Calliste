@@ -12,6 +12,7 @@ function [ log_text ] = mc_tools2(Apix, n)
 %   n is an integer used to set the output you wish
 %   n = 1 -> Print some statistics on the events
 %   n = 2 -> Evaluate the scattering map for double events
+%   n = 3 -> Estimate the polarization factor Q
 
     switch n
         case 1
@@ -100,6 +101,20 @@ function [ log_text ] = mc_tools2(Apix, n)
             imagesc(log(double_map(80:120,80:120)));
             colorbar;
             log_text = '>Processing 2 done.';
+        case 3
+            % Estimate Q
+            load('double_map.mat','double_map')
+            iCenter = 101;
+            jCenter = 101;
+            row = double_map(iCenter,:);  %#ok<NODEF>
+            col = double_map(:,jCenter);
+            srow=sum(row);
+            scol=sum(col);
+            Q = (srow - scol ) / (srow + scol);
+            colormap hot;
+            imagesc(log(double_map(80:120,80:120)));
+            colorbar;
+            disp(['Q = ',num2str(Q)])
         otherwise
             log_text = '>Error: wrong index. Try <help mc_tools2> for help';        
     end
