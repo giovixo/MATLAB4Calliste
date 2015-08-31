@@ -16,7 +16,11 @@ function [ Apix ] = mc_pixelize( A )
     % The data matrix containing the pixelated array
     Apix = zeros(20, 5, size);
     % voxel is the matrix containg the energy in each detector voxel 
+    h = waitbar(0,'Please wait...');
     for i = 1:size
+        if mod(i,size/100) == 0 
+            waitbar(i / size);
+        end
         voxel = zeros(100, 100, 10);
         for j = 1:sum(A(:,2,i)>0)
             % Evaluate and display the index
@@ -45,5 +49,6 @@ function [ Apix ] = mc_pixelize( A )
         % It fills the Apix pixelated events data array
         Apix(1:length(event(:,1)),:,i) = event;
     end
+    close(h);
 end
 
