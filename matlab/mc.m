@@ -1,4 +1,4 @@
-1% Main Script for data processing
+% Main Script for data processing
 % Version 0.1
 
 %% Step 1: read the file and return the data array
