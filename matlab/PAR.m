@@ -3,7 +3,7 @@ classdef PAR
     %   Define some parameters, tha can be used into the MATLAB fiunctions 
     
     properties( Constant )
-        LOG = 0; % Log level 
+        LOG = 0; % Log level (0: default, 1: verbose)
         DATA_PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set02/';
         EVENTS_NUMBER = 500000; % The numeber of photons 
         HISTORY_LENGTH = 20; % The recorded history for the pixelated detector

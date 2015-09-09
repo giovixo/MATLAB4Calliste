@@ -1,11 +1,11 @@
-function [ log_text ] = mc_tools2(Apix, n)
+function mc_tools2(Apix, n)
 %MC_TOOLS2 Level2 data analysis
 %Version 0.1
 %
 %   This functions takes as input the photon list Apix (run mc_pixelize.m first) 
 %   in the pixelated detector and process the data providing some outputs.
 %
-%   log_text = MC_TOOLS2(Apix, n)
+%   MC_TOOLS2(Apix, n)
 %   Apix is array in workspace that contains the photons history in the
 %   pixelated detector.
 %   n is an integer used to set the output you wish
@@ -17,6 +17,7 @@ function [ log_text ] = mc_tools2(Apix, n)
     switch n
         case 1
             % Evaluate some statistics
+            disp('n = 1, evaluating some statistics...');
             size = PAR.EVENTS_NUMBER;
             n_event = 0;
             null_event = 0;
@@ -38,15 +39,17 @@ function [ log_text ] = mc_tools2(Apix, n)
                         others = others + 1;
                 end
             end
+            disp('Events statistics');
+            disp('=================');
             disp(['Threshold (keV): ' num2str( 1000*threshold )]);
             disp(['Total events: ' num2str( n_event )]);
             disp(['No detection: ' num2str( null_event )]);
             disp(['Single events: ' num2str( single )]);
             disp(['Double events: ' num2str( double )]);
             disp(['Multiple (>2) events: ' num2str( others )]);
-            log_text = '>Processing 1 done.';
         case 2
             % Scattering plot for double events
+            disp('n = 2, scatter plot for double events...');
             size = PAR.EVENTS_NUMBER;
             n_event = 0;
             null_event = 0;
@@ -88,6 +91,8 @@ function [ log_text ] = mc_tools2(Apix, n)
                         others = others + 1;
                 end
             end
+            disp('Events statistics');
+            disp('=================');
             disp(['Threshold (keV): ' num2str( 1000*threshold )]);
             disp(['Total events: ' num2str( n_event )]);
             disp(['No detection: ' num2str( null_event )]);
@@ -100,9 +105,10 @@ function [ log_text ] = mc_tools2(Apix, n)
             colormap hot;
             imagesc(log(double_map(80:120,80:120)));
             colorbar;
-            log_text = '>Processing 2 done.';
+            disp('>The scatter plot for double events is ready.');
         case 3
             % Estimate Q
+            disp('Estimating the polarization factor...');
             load('double_map.mat','double_map')
             iCenter = 101;
             jCenter = 101;
@@ -116,7 +122,7 @@ function [ log_text ] = mc_tools2(Apix, n)
             colorbar;
             disp(['Q = ',num2str(Q)])
         otherwise
-            log_text = '>Error: wrong index. Try <help mc_tools2> for help';        
+            disp('>Error: wrong index. Try <help mc_tools2> for help');        
     end
 
 end

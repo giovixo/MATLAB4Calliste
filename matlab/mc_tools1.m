@@ -1,11 +1,11 @@
-function [ log_text ] = mc_tools1(A, n)
+function mc_tools1(A, n)
 %MC_TOOLS1 Level 1 data analysis 
 %Version: 0.1
 %
 %   This functions takes as input the photon list array A (run mc_read.m first)
 %   and process the data providing some outputs.
 %
-%   log_text = MC_TOOLS1(A, n)
+%   MC_TOOLS1(A, n)
 %   Input:
 %   A is array in workspace that contains the row photons history
 %   n is an integer used to set the output you wish
@@ -33,16 +33,16 @@ function [ log_text ] = mc_tools1(A, n)
             grid on;
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);
-            log_text = '> The input spectrum (blue line) is ready.';
+            disp('> The input spectrum (blue line) is ready.');
         case 2
             spec=histc(e_det,xout);
             loglog(xout, spec,'r');
             grid on;
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);
-            log_text = '> The detected spectrum (red line) is ready.';
+            disp('> The detected spectrum (red line) is ready.');
         otherwise
-            log_text = '> Error: wrong index. Try <help mc_tools1> for help';
+            disp('> Error: wrong index. Try <help mc_tools1> for help');
     end
     
 end
