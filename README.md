@@ -23,9 +23,11 @@
 
 The code is based on two steps data analysis.
 
-In step 1 the data file is read and the energy deposits list for each input photons is evaluated. We call these data "raw photon history" (stored into the A array).
+In step 1 the data file is read and the energy deposits list for each input photons is evaluated. We call these data "raw photon history" 
+or LEVEL 1 DATA for short (stored into the A array).
 
-In step 2 the energy deposits are sampled in a pixelated detector. We call these data "pixelated photon history" (stored into Apix array).
+In step 2 the energy deposits are sampled in a pixelated detector. We call these data "pixelated photon history" ore LEVEL 2 DATA for 
+short (stored into Apix array).
 
 The parameters of the run are stored into the PAR.m class.
 
