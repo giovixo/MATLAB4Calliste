@@ -15,15 +15,13 @@ function [ log_text ] = mc_tools1(A, n)
     size = PAR.EVENTS_NUMBER;
  
     % Read the input energy
-    size = PAR.EVENTS_NUMBER; 
     e_inp = zeros(size,1);
     for i = 1:size
         e_inp(i) = -1000. * A(A(:,2,i) < 0, 2, i);
     end
     [spec, xout]=hist(e_inp,100);
     
-    % Read the detected energy
-    size = PAR.EVENTS_NUMBER; 
+    % Read the detected energy 
     e_det = zeros(size,1);
     for i = 1:size
         e_det(i) = 1000. * sum( A(A(:,2,i) > 0,2,i) );
