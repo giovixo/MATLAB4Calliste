@@ -47,7 +47,8 @@ Apix = mc_pixelize(A);
 %% Level 2 analysis example (see 'help mc_tools2' for more)
 log_text = mc_tools2(A, 1);
 disp(log_text);
-%% Level 3 analysis example (see 'help mc_polarization' for more
+
+%% Level 2 analysis example (see 'help mc_polarization' for more)
 [alpha, q]= mc_polarization(double_map);
 plot(alpha, q,'r*')
 xlabel('alpha (degree)','FontSize',18);
