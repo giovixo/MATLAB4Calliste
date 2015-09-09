@@ -14,7 +14,6 @@
 * matlab: MATLAB source code
 * dataset: it contains a short sample data file
 
-
 ### How to run ###
 
 * Open the MATLAB on your pc
@@ -34,21 +33,22 @@ The parameters of the run are stored into the PAR.m class.
 
 ```
 #!matlab
-% Read a file and return the data array A
-A = mc_read('01PolCrabCusp.dat'); 
-
-%% Level 1 analysis example (see 'help mc_tools1' for more)
-log_text = mc_tools1(A, 1);
-disp(log_text);
-
-%% Step 2: Convert A into a 'photons history' into the 'pixelated photon history' Apix
-Apix = mc_pixelize(A);
-
-%% Level 2 analysis example (see 'help mc_tools2' for more)
-log_text = mc_tools2(A, 1);
-disp(log_text);
-
-%% Level 2 analysis example (see 'help mc_polarization' for more)
+%% Step 1: read the file and return the data array
+disp('> Step 1...');
+ticID = tic; A = mc_read('01PolCrabCusp.dat'); toc(ticID);
+clear('ticID');
+disp('> The raw photons history A is ready.');
+%% Step 1: analysis example (see 'help mc_tools1' for more)
+mc_tools1(A, 1);
+%% Step 2: Convert A into a 'photons history' into a pixelated detector
+disp('> Step 2...');
+ticID = tic; Apix = mc_pixelize(A); toc(ticID);
+clear('ticID');
+disp('> The pixelated photons history Apix is ready.');
+%% Step 2: analysis example (see 'help mc_tools2' for more)
+mc_tools2(Apix, 2);
+%% Level 3 analysis example (see 'help mc_polarization' for more
+load 'double_map.mat'
 [alpha, q]= mc_polarization(double_map);
 plot(alpha, q,'r*')
 xlabel('alpha (degree)','FontSize',18);

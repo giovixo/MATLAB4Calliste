@@ -14,8 +14,9 @@ ticID = tic; Apix = mc_pixelize(A); toc(ticID);
 clear('ticID');
 disp('> The pixelated photons history Apix is ready.');
 %% Step 2: analysis example (see 'help mc_tools2' for more)
-mc_tools2(A, 1);
+mc_tools2(Apix, 2);
 %% Level 3 analysis example (see 'help mc_polarization' for more
+load 'double_map.mat'
 [alpha, q]= mc_polarization(double_map);
 plot(alpha, q,'r*')
 xlabel('alpha (degree)','FontSize',18);

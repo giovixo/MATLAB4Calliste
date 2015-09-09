@@ -42,7 +42,7 @@ function mc_tools1(A, n)
             ylabel('Photons','fontsize',14);
             disp('> The detected spectrum (red line) is ready.');
         otherwise
-            disp('> Error: wrong index. Try <help mc_tools1> for help');
+            disp('> Error: wrong index. Try <help mc_tools1> for help.');
     end
     
 end
