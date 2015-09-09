@@ -4,10 +4,9 @@
 
 * G. De Cesare - decesare.giovanni@gmail.com
 
-### Purpose ###
+### Infos ###
 
 * Code for the analysis of the Cusp Monte Carlo data
-* Release 0.1
 * Dependences: MATLAB
 
 ### Directories ###
@@ -19,6 +18,7 @@
 ### How to run ###
 
 * Open the MATLAB application on your pc
+* Eventually edit PAR.m file
 * Eventually edit mc.m file
 * Run mc.m
 
@@ -47,4 +47,10 @@ Apix = mc_pixelize(A);
 %% Level 2 analysis example (see 'help mc_tools2' for more)
 log_text = mc_tools2(A, 1);
 disp(log_text);
+%% Level 3 analysis example (see 'help mc_polarization' for more
+[alpha, q]= mc_polarization(double_map);
+plot(alpha, q,'r*')
+xlabel('alpha (degree)','FontSize',18);
+ylabel('Q','FontSize',18);
+grid;
 ```
