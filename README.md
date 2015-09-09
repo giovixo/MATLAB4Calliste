@@ -17,7 +17,7 @@
 
 ### How to run ###
 
-* Open the MATLAB application on your pc
+* Open the MATLAB on your pc
 * Eventually edit PAR.m file
 * Eventually edit mc.m file
 * Run mc.m
