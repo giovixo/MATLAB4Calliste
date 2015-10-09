@@ -126,7 +126,73 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                     disp(['Q = ',num2str(Q)]);
                 end
             end
-            disp('done.');            
+            disp('done.');  
+        case 3
+            disp('Evaluating Q with method 3 ...');
+            % Loop over different angles
+            for theta = PAR.POLARIZATION_ANGLES
+                atheta = abs(theta);
+                % Define "the polarization line"
+                % The angular coefficient is ...
+                m = tan( atheta*(pi/180.) );
+                if PAR.LOG == 1
+                    disp(['Theta = ',num2str(atheta)]);
+                    disp(['m = ',num2str(m)]);
+                end
+                x = linspace(-3.5,3.5,700)';
+                y = (-1. / m) * x; 
+                % Define a slice around the polarization line
+                deltaM = 0.02; % TBD
+                % Create a random set of points (x,y) in a thin slice
+                % between yMin and Ymax
+                x = -3.4 + 6.8 * rand(100000, 1);
+                y = -3.4 + 6.8 * rand(100000, 1);
+                y1 = ( (-1. / m) - deltaM) * x;
+                y2 = ( (-1. / m) + deltaM) * x;
+                x = x(y < max(y1, y2) & y > min(y1, y2));
+                y = y(y < max(y1, y2) & y > min(y1, y2));
+                %plot(x, y, '.'); 
+                %pause;
+                % Histogram the points of the line and then get the pixels with the line
+                % inside
+                h = hist3([x, y], 'Edges', edges);
+                matrix1 = h(1:end-1,1:end-1);
+                pixels = matrix1 > 1;
+                % Evaluate the count belong the line
+                scol = sum(double_map_small(pixels));
+                % Define line orthogonal to "the polarization line"
+                x = linspace(-3.5,3.5,700)';
+                y = m * x; 
+                % Create a random set of points (x,y) in a thin slice
+                % between yMin and Ymax
+                x = -3.4 + 6.8 * rand(100000, 1);
+                y = -3.4 + 6.8 * rand(100000, 1);
+                y1 = ( m - deltaM) * x;
+                y2 = ( m + deltaM) * x;
+                x = x(y < max(y1, y2) & y > min(y1, y2));
+                y = y(y < max(y1, y2) & y > min(y1, y2));
+                % Histogram the points of the line and then get the pixels with the line
+                % inside
+                h = hist3([x, y], 'Edges', edges);
+                matrix2 = h(1:end-1,1:end-1);
+                pixels = matrix2 > 1;
+                % Evaluate the count belong the line
+                srow = sum(double_map_small(pixels));
+                % Display the matrix (if theta < 0)
+                if theta < 0
+                    colormap hot;
+                    imagesc(matrix1);
+                    colorbar;
+                    axis square;
+                end
+                % Estimate the polarization factor
+                Q = (srow - scol ) / (srow + scol);
+                Q_arr = [Q_arr Q];
+                if PAR.LOG == 1
+                    disp(['Q = ',num2str(Q)]);
+                end
+            end
+            disp('done.');
     end
 end
 
