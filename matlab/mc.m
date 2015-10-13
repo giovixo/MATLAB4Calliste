@@ -16,9 +16,10 @@ disp('> The pixelated photons history Apix is ready.');
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_tools2' for more)
 mc_tools2(Apix, 2);
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_polarization' for more)
+clear;
 load 'double_map.mat'
 [alpha, q]= mc_polarization(double_map, 3);
-plot(alpha, q,'r*')
+plot(alpha, q, 'r*')
 xlabel('alpha (degree)','FontSize',18);
 ylabel('Q','FontSize',18);
 grid;
