@@ -12,11 +12,12 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
 
     Q_arr = [];
 
-    % 7 x 7 double events map. We consider events lower than order 3
-    double_map_small = double_map(98:104,98:104);
+    % 7 x 7 double events map. We consider events lower than a given order 
+    order = PAR.ORDER;
+    double_map_small = double_map( (101 - order): (101 +  order), (101 - order): (101 +  order));
 
     % Define the pixel edges
-    edges={linspace(-3.5,3.5,8),linspace(-3.5,3.5,8)};
+    edges={linspace(-0.5 - order, 0.5 + order, 2 + order * 2),linspace(-0.5 - order, 0.5 + order, 2 + order * 2)};
 
     switch n
         case 1
@@ -130,6 +131,7 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
             disp('done.');  
         case 3
             disp('Evaluating Q with method 3 ...');
+            %disp(['Order: ' num2str(order)])
             angle = 0.5 * ( abs(PAR.POLARIZATION_ANGLES_MIN) +  abs( PAR.POLARIZATION_ANGLES_MAX ) );
             %hold on; axis([-3.5 3.5 -3.5 3.5]);
             % Loop over different angles
@@ -150,8 +152,10 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 end
                 % Create a random set of points (x,y) in a thin slice
                 % between y1 and y2
-                x = -3.5 + 7. * rand(100000, 1);
-                y = -3.5 + 7. * rand(100000, 1);
+                %x = -3.5 + 7. * rand(100000, 1);
+                %y = -3.5 + 7. * rand(100000, 1);
+                x = -( order + 0.5 ) + ( 2 * order + 1 ) * rand(100000, 1);
+                y = -( order + 0.5 ) + ( 2 * order + 1 ) * rand(100000, 1);
                 y1 = ( -1. / mMin ) * x;
                 y2 = ( -1. / mMax ) * x;
                 x = x(y < max(y1, y2) & y > min(y1, y2));
@@ -168,8 +172,10 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 % Define line orthogonal to "the polarization line" and
                 % create a random set of points (x,y) in a thin slice
                 % between yMin and Ymax
-                x = -3.5 + 7. * rand(100000, 1);
-                y = -3.5 + 7. * rand(100000, 1);
+                %x = -3.5 + 7. * rand(100000, 1);
+                %y = -3.5 + 7. * rand(100000, 1);
+                x = -( order + 0.5 ) + ( 2 * order + 1 ) * rand(100000, 1);
+                y = -( order + 0.5 ) + ( 2 * order + 1 ) * rand(100000, 1);
                 y1 = mMin * x;
                 y2 = mMax * x;
                 x = x(y < max(y1, y2) & y > min(y1, y2));

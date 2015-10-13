@@ -20,6 +20,7 @@ clear;
 load 'double_map.mat'
 [alpha, q]= mc_polarization(double_map, 3);
 plot(alpha, q, 'r*')
+axis([0 400 -0.4 0.4]);
 xlabel('alpha (degree)','FontSize',18);
 ylabel('Q','FontSize',18);
 grid;
