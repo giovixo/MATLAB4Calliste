@@ -9,7 +9,7 @@ classdef PAR
         HISTORY_LENGTH = 20; % The recorded history for the pixelated detector
         POLARIZATION_ANGLES = [5:10:85 95:10:175 185:10:265 275:10:355];
         POLARIZATION_ANGLES_MIN = [5:10:85 95:10:175 185:10:265 275:10:355]; % Used by 'mc_polarization(,3)'
-        POLARIZATION_ANGLES_MAX = [5:10:85 95:10:175 185:10:265 275:10:355] + 1.;
+        POLARIZATION_ANGLES_MAX = [5:10:85 95:10:175 185:10:265 275:10:355] + 0.2;
     end
     
 end

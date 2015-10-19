@@ -150,12 +150,18 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 end
                 % Create a random set of points (x,y) in a thin slice
                 % between y1 and y2
-                x = -10.5 + 21. * rand(1000000, 1);
-                y = -10.5 + 21. * rand(1000000, 1);
+                x  = -10.5 + 21. * rand(100000, 1);
+                y  = -10.5 + 21. * rand(100000, 1);
                 y1 = ( -1. / mMin ) * x;
                 y2 = ( -1. / mMax ) * x;
                 x = x(y < max(y1, y2) & y > min(y1, y2));
                 y = y(y < max(y1, y2) & y > min(y1, y2));
+                % The border
+                xLin    = linspace(-10.5,10.5,700)';
+                yLinMin = (-1. / mMin) * xLin;
+                yLinMax = (-1. / mMax) * xLin;
+                x = [x' xLin' xLin']';
+                y = [y' yLinMin' yLinMax']';
                 if 0
                     hold on; axis square;
                     plot(x, y, '.'); 
@@ -173,12 +179,17 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 % Define line orthogonal to "the polarization line" and
                 % create a random set of points (x,y) in a thin slice
                 % between yMin and Ymax
-                x = -10.5 + 21. * rand(1000000, 1);
-                y = -10.5 + 21. * rand(1000000, 1);
+                x = -10.5 + 21. * rand(100000, 1);
+                y = -10.5 + 21. * rand(100000, 1);
                 y1 = mMin * x;
                 y2 = mMax * x;
                 x = x(y < max(y1, y2) & y > min(y1, y2));
                 y = y(y < max(y1, y2) & y > min(y1, y2));
+                xLin    = linspace(-10.5,10.5,700)';
+                yLinMin = mMin * xLin;
+                yLinMax = mMax * xLin;
+                x = [x' xLin' xLin']';
+                y = [y' yLinMin' yLinMax']';
                 if 0
                     hold on; axis square;
                     plot(x, y, '.'); 
