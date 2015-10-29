@@ -43,7 +43,7 @@ function mc_tools2(Apix, n)
             disp('=================');
             disp(['Threshold (keV): ' num2str( 1000*threshold )]);
             disp(['Total events: ' num2str( n_event )]);
-            disp(['No detection: ' num2str( null_event )]);
+            disp(['Without detection: ' num2str( null_event )]);
             disp(['Single events: ' num2str( single )]);
             disp(['Double events: ' num2str( double )]);
             disp(['Multiple (>2) events: ' num2str( others )]);
@@ -100,7 +100,7 @@ function mc_tools2(Apix, n)
             disp('=================');
             disp(['Threshold (keV): ' num2str( 1000*threshold )]);
             disp(['Total events: ' num2str( n_event )]);
-            disp(['No detection: ' num2str( null_event )]);
+            disp(['Without detection: ' num2str( null_event )]);
             disp(['Single events: ' num2str( single )]);
             disp(['Double events: ' num2str( double )]);
             disp(['Double events with the same z: ' num2str( double_z_const )]);
