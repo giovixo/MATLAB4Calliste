@@ -12,14 +12,16 @@ function mc_tools1(A, n)
 %   n = 1 -> Plot the input spectrum
 %   n = 2 -> Plot the detected spectrum
 
-    size = PAR.EVENTS_NUMBER;
+    size = length(A); % PAR.EVENTS_NUMBER;
  
     % Read the input energy
     e_inp = zeros(size,1);
     for i = 1:size
         e_inp(i) = -1000. * A(A(:,2,i) < 0, 2, i);
     end
-    [spec, xout]=hist(e_inp,100);
+    
+    [spec, xout]=hist(e_inp,500);
+%   disp(min(e_inp)); % Debug
     
     % Read the detected energy 
     e_det = zeros(size,1);

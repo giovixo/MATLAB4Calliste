@@ -12,13 +12,13 @@ function [ Apix ] = mc_pixelize( A )
 %   Output: Apix is the pixelated 'photons history' array.
 
     % The number of input photons
-    size = PAR.EVENTS_NUMBER; 
+    size = length( A ); %PAR.EVENTS_NUMBER; 
     % The data matrix containing the pixelated array
     Apix = zeros(20, 5, size);
     % voxel is the matrix containg the energy in each detector voxel 
     h = waitbar(0,'Please wait...');
     for i = 1:size
-        if mod(i,size/100) == 0 
+        if mod(i,fix(size/100)) == 0 
             waitbar(i / size);
         end
         voxel = zeros(100, 100, 10);

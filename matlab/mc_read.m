@@ -1,4 +1,4 @@
-function [ data ] = mc_read( fileName )
+function [ data, size ] = mc_read( fileName, energy_band )
 %MC_READ - Read the Monte Carlo data file
 %Version:  0.1
 %
@@ -9,6 +9,10 @@ function [ data ] = mc_read( fileName )
 %   Input: the file name
 %   A: data array filled with data contained in file_name
 
+    if (~exist('energy_band', 'var'))
+        energy_band = [0, 1000];
+    end
+    
     % Constants
     LOG = false;
     PATH = PAR.DATA_PATH;
@@ -74,8 +78,19 @@ function [ data ] = mc_read( fileName )
             % Assign the record to the current event
             data(k+1,:, ievent) = A(i+k,:);
         end
-        i = i + 1 + k;   
+        energy_inp = 1000. * abs( data(k+1, 2, ievent) );
+        i = i + 1 + k;
+        % check if the event must be rejected
+        if ( energy_inp < energy_band(1) || energy_inp > energy_band(2) )
+            data(:, :, ievent) = zeros( HISTORY_LEN, 5 );
+            ievent = ievent - 1;
+            MAX_EVENTS = MAX_EVENTS - 1;
+%         else
+%             disp( energy_inp );
+        end
     end
+    
+    size = ievent; 
     
     % Close the data file
     if fileID
