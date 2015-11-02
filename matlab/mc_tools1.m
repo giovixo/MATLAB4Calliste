@@ -20,7 +20,7 @@ function mc_tools1(A, n)
         e_inp(i) = -1000. * A(A(:,2,i) < 0, 2, i);
     end
     
-    [spec, xout]=hist(e_inp,500);
+    [spec, xout]=hist(e_inp,300);
 %   disp(min(e_inp)); % Debug
     
     % Read the detected energy 
@@ -31,14 +31,18 @@ function mc_tools1(A, n)
     
     switch n
         case 1
-            loglog(xout, spec,'b');
+            %loglog(xout, spec,'b');
+            stairs(xout, spec,'b');
+            set(gca, 'XScale', 'log');
+            set(gca, 'YScale', 'log');
             grid on;
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);
             disp('> The input spectrum (blue line) is ready.');
         case 2
             spec=histc(e_det,xout);
-            loglog(xout, spec,'r');
+            %loglog(xout, spec,'r');
+            stairs(xout, spec,'r');
             grid on;
             xlabel('Energy (keV)','fontsize',14);
             ylabel('Photons','fontsize',14);

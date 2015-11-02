@@ -83,15 +83,19 @@ function mc_tools2(Apix, n)
                             double_energy(i) = 1000. * ( double_energy(i) + Apix(first,2,i) + Apix(second,2,i) );
                             if double_energy(i) > 60
                                 double_z_const = double_z_const + 1;
-                                double_map(ix + 101, iy + 101) = double_map(ix + 101, iy + 101) + 1;
+                                if PAR.SAME_Z
+                                    double_map(ix + 101, iy + 101) = double_map(ix + 101, iy + 101) + 1;
+                                end
                             end
                         end
                         double_energy_free(i) = 1000. * ( double_energy_free(i) + Apix(1,2,i) + Apix(2,2,i) );
-%                         first  = randi(2);  % 1 or 2 
-%                         second = 3 - first; % 2 or 1 
-%                         ix = Apix(first,3,i) - Apix(second,3,i);
-%                         iy = Apix(first,4,i) - Apix(second,4,i);
-%                         double_map(ix + 101, iy + 101) = double_map(ix + 101, iy + 101) + 1;
+                        if ~PAR.SAME_Z
+                            first  = randi(2);  % 1 or 2
+                            second = 3 - first; % 2 or 1
+                            ix = Apix(first,3,i) - Apix(second,3,i);
+                            iy = Apix(first,4,i) - Apix(second,4,i);
+                            double_map(ix + 101, iy + 101) = double_map(ix + 101, iy + 101) + 1;
+                        end
                     otherwise
                         others = others + 1;
                 end

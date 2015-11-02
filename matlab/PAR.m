@@ -5,6 +5,7 @@ classdef PAR
     properties( Constant )
         LOG = 0; % Log level (0: default, 1: verbose)
         DATA_PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set02/';
+        SAME_Z = true; % true if the double events have the same z
         EVENTS_NUMBER = 500000; % The number of photons 
         HISTORY_LENGTH = 20; % The recorded history for the pixelated detector
         POLARIZATION_ANGLES = [5:10:85 95:10:175 185:10:265 275:10:355];
