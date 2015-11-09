@@ -123,6 +123,16 @@ function mc_tools2(Apix, n)
             jCenter = 101;
             row = double_map(iCenter,:);  %#ok<NODEF>
             col = double_map(:,jCenter);
+            % Filter
+            disp(['Xcenter: ' num2str( row(jCenter) ) ] );
+            disp(['Ycenter: ' num2str( col(jCenter) ) ]);
+            if PAR.FILTER
+                disp('Filter 2-5 ON');
+                row( jCenter - 1 ) = 0; row( jCenter + 1 ) = 0;
+                col( jCenter - 1 ) = 0; col( jCenter + 1 ) = 0;
+                row(1: jCenter - 6) = 0; row(jCenter + 6:end) = 0;
+                col(1: jCenter - 6) = 0; col(jCenter + 6:end) = 0;
+            end
             srow=sum(row);
             scol=sum(col);
             Q = (srow - scol ) / (srow + scol);

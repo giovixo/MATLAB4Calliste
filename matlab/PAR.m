@@ -1,7 +1,6 @@
 classdef PAR
     %PAR Some constant used for the data analysis 
     %   Define some parameters, tha can be used into the MATLAB fiunctions 
-    
     properties( Constant )
         LOG = 0; % Log level (0: default, 1: verbose)
         DATA_PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set02/';
@@ -11,7 +10,7 @@ classdef PAR
         POLARIZATION_ANGLES = [5:10:85 95:10:175 185:10:265 275:10:355];
         POLARIZATION_ANGLES_MIN = [5:10:85 95:10:175 185:10:265 275:10:355]; % Used by 'mc_polarization(,3)'
         POLARIZATION_ANGLES_MAX = [5:10:85 95:10:175 185:10:265 275:10:355] + 0.2;
+        FILTER = true; % Filter 2-5 on the "linear" Q estimation
     end
-    
 end
 
