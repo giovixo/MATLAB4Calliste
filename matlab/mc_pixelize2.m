@@ -20,8 +20,6 @@ function [ Apix ] = mc_pixelize2( A )
     Y_VOXEL = 2.;
     Z_VOXEL = 2.;
     
-%     voxel = zeros( fix(X_DET / X_VOXEL), fix(Y_DET / Y_VOXEL), fix(Z_DET / Z_VOXEL) );
-    
     eventsWithInteraction    = 0;
     eventsWithoutInteraction = 0;
     

@@ -15,7 +15,7 @@ mc_tools1(Ared, 2);
 hold off;
 %% Step 2: Convert A into a 'photons history' into a pixelated detector
 disp('> Step 2...');
-ticID = tic; Apix = mc_pixelize(Ared); toc(ticID);
+ticID = tic; Apix = mc_pixelize2(Ared); toc(ticID);
 clear('ticID');
 disp('> The pixelated photons history Apix is ready.');
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_tools2' for more)
@@ -23,7 +23,7 @@ mc_tools2(Apix, 2);
 mc_tools2(Apix, 3);
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_polarization' for more)
 load 'double_map.mat'
-newMap = mc_map_filter(double_map, 1, 5);
+newMap = mc_map_filter(double_map, 2, 5);
 [alpha, q]= mc_polarization(newMap, 3);
 %dlmwrite('Q2alpha_z_free_e190-337_filter2-5_theta_10.0.txt', [alpha', q'],',');
 plot(alpha, q, 'r*')
