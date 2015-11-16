@@ -141,7 +141,7 @@ function mc_tools2(Apix, n)
             colorbar;
             disp(['Q = ',num2str(Q)])
         otherwise
-            disp('>Error: wrong index. Try <help mc_tools2> for help.');        
+            error('Wrong index. Type <help mc_tools2> for help.');        
     end
 
 end
