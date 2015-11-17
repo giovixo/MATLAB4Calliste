@@ -12,13 +12,13 @@ function [ Apix ] = mc_pixelize2( A )
 %   Output: Apix is the pixelated 'photons history' array.
     
     % The detector size (mm)
-    X_DET = 200.;
-    Y_DET = 200.;
-    Z_DET = 20.;
+    X_DET = PAR.X_DET; %   200.;
+    Y_DET = PAR.Y_DET; % 200.;
+    Z_DET = PAR.Z_DET; % 20.;
     % The voxel size (mm)
-    X_VOXEL = 2.;
-    Y_VOXEL = 2.;
-    Z_VOXEL = 2.;
+    X_VOXEL = PAR.X_VOXEL; % 2.;
+    Y_VOXEL = PAR.Y_VOXEL; % 2.
+    Z_VOXEL = PAR.Z_VOXEL; %  2.;
     
     eventsWithInteraction    = 0;
     eventsWithoutInteraction = 0;
