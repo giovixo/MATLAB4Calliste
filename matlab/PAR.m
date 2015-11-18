@@ -13,12 +13,12 @@ classdef PAR
         Y_VOXEL = 2.;
         Z_VOXEL = 2.;
         SAME_Z = true; % true if the double events have the same z
+        FILTER = false; % Filter 2-5 on the "linear" Q estimation
         EVENTS_NUMBER = 500000; % The number of photons 
         HISTORY_LENGTH = 20; % The recorded history for the pixelated detector
         POLARIZATION_ANGLES = [5:10:85 95:10:175 185:10:265 275:10:355];
         POLARIZATION_ANGLES_MIN = [5:10:85 95:10:175 185:10:265 275:10:355]; % Used by 'mc_polarization(,3)'
         POLARIZATION_ANGLES_MAX = [5:10:85 95:10:175 185:10:265 275:10:355] + 0.2;
-        FILTER = true; % Filter 2-5 on the "linear" Q estimation
     end
 end
 

@@ -26,6 +26,7 @@ load 'double_map.mat'
 newMap = mc_map_filter(double_map, 2, 5);
 [alpha, q]= mc_polarization(newMap, 3);
 %dlmwrite('Q2alpha_z_free_e190-337_filter2-5_theta_10.0.txt', [alpha', q'],',');
+%dlmwrite('double_map_z_xxx_190-337.txt', double_map(80:120,80:120),',');
 plot(alpha, q, 'r*')
 axis([0 400 -0.8 0.8]);
 xlabel('alpha (degree)','FontSize',18);
