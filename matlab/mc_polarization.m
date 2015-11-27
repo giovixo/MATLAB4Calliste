@@ -206,6 +206,12 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 srow = sum(double_map_small(pixels));
                 % Estimate the polarization factor
                 Q = (srow - scol ) / (srow + scol);
+                % Estimate the error
+                err1 = sqrt( srow + scol ) / abs(srow - scol);
+                err2 = sqrt( srow + scol ) / abs(srow + scol);
+                Qerr = abs(Q) * ( err1 + err2 );
+                %disp(['alpha (degree) = ', num2str(angle(index-1)), ' Q = ', num2str(Q), ' +- ', num2str(Qerr)]);
+                disp([num2str(angle(index-1)), ' ', num2str(Q), ' ', num2str(Qerr)]);
                 Q_arr = [Q_arr Q];
                 if PAR.LOG == 1
                     disp(['Q = ',num2str(Q)]);

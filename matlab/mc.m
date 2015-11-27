@@ -13,7 +13,7 @@ mc_tools1(Ared, 1);
 hold on;
 mc_tools1(Ared, 2);
 hold off;
-%% Step 2: Convert A into a 'photons history' into a pixelated detector
+%% Step 2: Convert A into a pixelated detector
 disp('> Step 2...');
 ticID = tic; Apix = mc_pixelize2(Ared); toc(ticID);
 clear('ticID');
@@ -25,7 +25,7 @@ mc_tools2(Apix, 3);
 load 'double_map.mat'
 newMap = mc_map_filter(double_map, 2, 5);
 [alpha, q]= mc_polarization(newMap, 3);
-%dlmwrite('Q2alpha_z_free_e190-337_filter2-5_theta_10.0.txt', [alpha', q'],',');
+%dlmwrite('Q2alpha_e190-337_z_const_nofilter.txt', [alpha', q'],' ');
 %dlmwrite('double_map_z_xxx_190-337.txt', double_map(80:120,80:120),',');
 plot(alpha, q, 'r*')
 axis([0 400 -0.8 0.8]);

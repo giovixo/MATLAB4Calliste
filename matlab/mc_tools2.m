@@ -140,10 +140,13 @@ function mc_tools2(Apix, n)
             srow=sum(row);
             scol=sum(col);
             Q = (srow - scol ) / (srow + scol);
-            colormap hot;
+            err1 = sqrt( srow + scol ) / (srow - scol);
+            err2 = sqrt( srow + scol ) / (srow + scol);
+            Qerr = Q * ( err1 + err2 );
+            hot;
             imagesc(log(double_map(80:120,80:120)));
             colorbar;
-            disp(['Q = ',num2str(Q)])
+            disp(['Q = ', num2str(Q), ' +- ', num2str(Qerr)]);
         otherwise
             error('Wrong index. Type <help mc_tools2> for help.');        
     end
