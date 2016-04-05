@@ -12,6 +12,13 @@ function [ Apix_new ] = mc_hit ( Apix, threshold )
 %Apix_new the energy is convolved with the detector resolution
 %threshold is the detection threshold in keV
 
+% Loop over the interactions
+for i = 1:20
+    % Get the element with energy under the threshold
+    underThreshold = ( Apix(i, 2, :) < threshold ) & ( Apix(i, 2, :) > eps );
+    Apix(i, 2, underThreshold) = 0;
+    % As an example, set the the detector energy resoluton to 10 %
+end
 
 Apix_new = Apix;
 end
