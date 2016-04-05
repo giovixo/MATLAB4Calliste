@@ -3,7 +3,7 @@ classdef PAR
     %   Define some parameters, that can be used into the MATLAB functions 
     properties( Constant )
         LOG = 0; % Log level (0: default, 1: verbose)
-        DATA_PATH = '/Users/giovannidecesare/Works/Cusp/MATLAB4Cusp/dataset/set02/';
+        DATA_PATH = '/Users/giovanni/Works/Cusp/MATLAB4Cusp/dataset/set02/';
         % The detector size (mm)
         X_DET = 200.;
         Y_DET = 200.;

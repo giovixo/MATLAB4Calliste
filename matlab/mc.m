@@ -3,7 +3,8 @@
 
 %% Step 1: read the file and return the data array
 disp('> Step 1...');
-ticID = tic; [A, len] = mc_read('01PolCrabCusp.dat', [190., 337.]); toc(ticID);
+fileName = '01PolCrabCusp.dat';
+ticID = tic; [A, len] = mc_read(fileName, [190., 337.]); toc(ticID);
 clear('ticID');
 Ared = A(:,:,1:len);
 clear('A');
@@ -19,8 +20,8 @@ ticID = tic; Apix = mc_pixelize2(Ared); toc(ticID);
 clear('ticID');
 disp('> The pixelated photons history Apix is ready.');
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_tools2' for more)
-mc_tools2(Apix, 2);
-mc_tools2(Apix, 3);
+mc_tools2(Apix, 2); % Evaluate the scattering map for double events
+mc_tools2(Apix, 3); % Estimate the polarization factor Q
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_polarization' for more)
 load 'double_map.mat'
 newMap = mc_map_filter(double_map, 2, 5);
