@@ -4,6 +4,8 @@ classdef PAR
     properties( Constant )
         LOG = 0; % Log level (0: default, 1: verbose)
         DATA_PATH = '/Users/giovanni/Works/Cusp/MATLAB4Cusp/dataset/set02/';
+        % The detector threshold (in MeV)
+        THRESHOLD = 0.005;
         % The detector size (mm)
         X_DET = 200.;
         Y_DET = 200.;

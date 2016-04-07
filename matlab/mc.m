@@ -19,6 +19,8 @@ disp('> Step 2...');
 ticID = tic; Apix = mc_pixelize2(Ared); toc(ticID);
 clear('ticID');
 disp('> The pixelated photons history Apix is ready.');
+%% Step 2b: apply energy resolution and threshold 
+Apix = mc_hit(Apix, PAR.THRESHOLD);
 %% Analysis of the level 2 (pixelated detector) data (see 'help mc_tools2' for more)
 mc_tools2(Apix, 2); % Evaluate the scattering map for double events
 mc_tools2(Apix, 3); % Estimate the polarization factor Q

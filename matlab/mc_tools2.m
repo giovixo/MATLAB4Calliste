@@ -24,7 +24,7 @@ function mc_tools2(Apix, n)
             single = 0;
             double = 0;
             others = 0;
-            threshold = 0.005; 
+            threshold = PAR.THRESHOLD;   
             for i = 1:size
                 n_event = n_event + sum(Apix(:,2,i) < 0); 
                 multiplicity = sum(Apix(:,2,i) > threshold);
@@ -57,7 +57,7 @@ function mc_tools2(Apix, n)
             double = 0; 
             double_z_const = 0; % Double events with the same z
             others = 0;
-            threshold = 0.005;
+            threshold = PAR.THRESHOLD;
             % It will contain the scattering map for double events
             double_map = zeros(201);
             double_energy = zeros(size,1);
