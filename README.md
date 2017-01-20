@@ -6,8 +6,9 @@
 
 ### Infos ###
 
-* Code for the analysis of the Cusp Monte Carlo data
-* Dependences: MATLAB
+Some simple matlab function to reduce Monte Carlo event file generate by a GEANT4 code.
+
+The GEANT4 mass model is a CdZnTe BOX 
 
 ### Directories ###
 
@@ -17,7 +18,7 @@
 ### How to run ###
 
 * Open the MATLAB gui on your pc
-* To set som file path, edit PAR.m file
+* To set some file path, edit PAR.m file
 * Also edit mc.m file, if required
 * Run mc.m
 
