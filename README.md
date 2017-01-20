@@ -3,12 +3,14 @@
 ### Contributors ###
 
 * G. De Cesare - decesare.giovanni  at gmail.com
+* Ezio Caroli
+* Rui Miguel Curado da Silva
 
 ### Infos ###
 
 Some simple matlab function to reduce Monte Carlo event file generate by a GEANT4 code.
 
-The GEANT4 mass model is a CdZnTe BOX 
+The GEANT4 mass model is a CdZnTe BOX
 
 ### Directories ###
 
