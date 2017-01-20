@@ -59,7 +59,7 @@ function mc_tools2(Apix, n)
             others = 0;
             threshold = PAR.THRESHOLD;
             % It will contain the scattering map for double events
-            double_map = zeros(201);
+            double_map = zeros(401);
             double_energy = zeros(size,1);
             double_energy_free = zeros(size,1);
             energy = zeros(size,1); % input energy
@@ -81,10 +81,14 @@ function mc_tools2(Apix, n)
                             ix = Apix(first,3,i) - Apix(second,3,i);
                             iy = Apix(first,4,i) - Apix(second,4,i);
                             double_energy(i) = 1000. * ( double_energy(i) + Apix(first,2,i) + Apix(second,2,i) );
-                            if double_energy(i) > 60
+                            % Selection on the energy deposited in the
+                            % second detector (photoelectic absorption)
+                            photEnergy = 1000. * Apix(second,2,i);
+                            photEnergyIsOK = ( photEnergy > 181 ) && ( photEnergy < 197 );  
+                            if double_energy(i) > 60 && photEnergyIsOK
                                 double_z_const = double_z_const + 1;
                                 if PAR.SAME_Z
-                                    double_map(ix + 101, iy + 101) = double_map(ix + 101, iy + 101) + 1;
+                                    double_map(ix + 201, iy + 201) = double_map(ix + 201, iy + 201) + 1;
                                 end
                             end
                         end
@@ -112,15 +116,15 @@ function mc_tools2(Apix, n)
             % Anve and display the double map image
             save('double_map.mat','double_map')
             colormap hot;
-            imagesc(log(double_map(80:120,80:120)));
+            imagesc(log(double_map(180:220,180:220)));
             colorbar;
             disp('>The scatter plot for double events is ready.');
         case 3
             % Estimate Q
             disp('Estimating the polarization factor...');
             load('double_map.mat','double_map')
-            iCenter = 101;
-            jCenter = 101;
+            iCenter = 201;
+            jCenter = 201;
             row = double_map(iCenter,:);  %#ok<NODEF>
             col = double_map(:,jCenter);
             % Filter
@@ -144,7 +148,7 @@ function mc_tools2(Apix, n)
             err2 = sqrt( srow + scol ) / (srow + scol);
             Qerr = Q * ( err1 + err2 );
             hot;
-            imagesc(log(double_map(80:120,80:120)));
+            %imagesc(log(double_map(80:120,80:120)));
             colorbar;
             disp(['Q = ', num2str(Q), ' +- ', num2str(Qerr)]);
         otherwise

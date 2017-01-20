@@ -9,7 +9,7 @@ function [ output_map ] = mc_map_filter( input_map, dMin, dMax )
 %  d_max = 5 Distances 6, 7, 8, ecc... are setted to zero
 
     output_map = input_map; 
-    origin = 101;
+    origin = 201;
     % Clear the internal part
     dMin = dMin - 1;
     output_map( origin - dMin: origin + dMin, origin - dMin : origin + dMin ) = 0;

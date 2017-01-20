@@ -33,7 +33,7 @@ function mc_tools1(A, n)
         case 1
             %loglog(xout, spec,'b');
             stairs(xout, spec,'b');
-            set(gca, 'XScale', 'log');
+            set(gca, 'XScale', 'lin');
             set(gca, 'YScale', 'log');
             grid on;
             xlabel('Energy (keV)','fontsize',14);
@@ -48,7 +48,7 @@ function mc_tools1(A, n)
             ylabel('Photons','fontsize',14);
             disp('> The detected spectrum (red line) is ready.');
         otherwise
-            disp('> Error: wrong index. Try <help mc_tools1> for help.');
+            disp('> Error: wrong index. Type <help mc_tools1> for help.');
     end
     
 end

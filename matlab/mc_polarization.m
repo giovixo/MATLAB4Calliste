@@ -14,11 +14,10 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
 
     % 21 x 21 double evevents map 
     % max distance = 10
-    double_map_small = double_map(91:111, 91:111);
-
+    %double_map_small = double_map(91:111, 91:111);
+    double_map_small = double_map(191:211, 191:211);
     % Define the pixel edges
     edges={linspace(-10.5, 10.5, 22), linspace(-10.5, 10.5, 22)};
-    
     switch n
         case 1
             disp('Evaluating Q with method 1 ...');
@@ -131,17 +130,18 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
             disp('done.');  
         case 3
             disp('Evaluating Q with method 3 ...');
-            angle = 0.5 * ( abs(PAR.POLARIZATION_ANGLES_MIN) +  abs( PAR.POLARIZATION_ANGLES_MAX ) );
+            disp('angle srow scol Q Qerr')
+            angle = 0.5 * ( PAR.POLARIZATION_ANGLES_MIN +  PAR.POLARIZATION_ANGLES_MAX );
             % Loop over different angles
             index = 1;
             for theta = PAR.POLARIZATION_ANGLES_MIN
-                atheta = abs(theta);
+                atheta = theta; 
                 mMin = tan( atheta*(pi/180.) );
                 if PAR.LOG == 1
                     disp(['Theta min = ',num2str(atheta)]);
                     disp(['m min = ',num2str(mMin)]);
                 end
-                atheta = abs(PAR.POLARIZATION_ANGLES_MAX(index));
+                atheta = PAR.POLARIZATION_ANGLES_MAX(index); 
                 index = index + 1;
                 mMax = tan( atheta*(pi/180.) );
                 if PAR.LOG == 1
@@ -154,14 +154,13 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 y  = -10.5 + 21. * rand(100000, 1);
                 y1 = ( -1. / mMin ) * x;
                 y2 = ( -1. / mMax ) * x;
-                x = x(y < max(y1, y2) & y > min(y1, y2));
-                y = y(y < max(y1, y2) & y > min(y1, y2));
-                % The border
-                xLin    = linspace(-10.5,10.5,700)';
-                yLinMin = (-1. / mMin) * xLin;
-                yLinMax = (-1. / mMax) * xLin;
-                x = [x' xLin' xLin']';
-                y = [y' yLinMin' yLinMax']';
+                if ~( ( mMin < 0 && mMax > 0 ) )  
+                    x = x(y < max(y1, y2) & y > min(y1, y2));
+                    y = y(y < max(y1, y2) & y > min(y1, y2));
+                else
+                    x = x( y > max(y1,y2) | y < min(y1,y2) );
+                    y = y( y > max(y1,y2) | y < min(y1,y2) );
+                end
                 if 0
                     hold on; axis square;
                     plot(x, y, '.'); 
@@ -175,6 +174,7 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 matrix1 = h(1:end-1,1:end-1);
                 pixels = matrix1 > 1;
                 % Evaluate the count belong the line
+                %%scol = sum(double_map_small(pixels));
                 scol = sum(double_map_small(pixels));
                 % Define line orthogonal to "the polarization line" and
                 % create a random set of points (x,y) in a thin slice
@@ -183,14 +183,14 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 y = -10.5 + 21. * rand(100000, 1);
                 y1 = mMin * x;
                 y2 = mMax * x;
-                x = x(y < max(y1, y2) & y > min(y1, y2));
-                y = y(y < max(y1, y2) & y > min(y1, y2));
-                xLin    = linspace(-10.5,10.5,700)';
-                yLinMin = mMin * xLin;
-                yLinMax = mMax * xLin;
-                x = [x' xLin' xLin']';
-                y = [y' yLinMin' yLinMax']';
-                if 0
+                if ~( ( mMin > 0 && mMax < 0 ) ) 
+                    x = x(y < max(y1, y2) & y > min(y1, y2));
+                    y = y(y < max(y1, y2) & y > min(y1, y2));
+                else
+                    x = x( y > max(y1,y2) | y < min(y1,y2) );
+                    y = y( y > max(y1,y2) | y < min(y1,y2) );
+                end
+                if 1
                     hold on; axis square;
                     plot(x, y, '.'); 
                     axis([-10.5 10.5 -10.5 10.5]);
@@ -203,6 +203,7 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 matrix2 = h(1:end-1,1:end-1);
                 pixels = matrix2 > 1;
                 % Evaluate the count belong the line
+                %%srow = sum(double_map_small(pixels));
                 srow = sum(double_map_small(pixels));
                 % Estimate the polarization factor
                 Q = (srow - scol ) / (srow + scol);
@@ -210,8 +211,9 @@ function [angle, Q_arr] = mc_polarization( double_map, n )
                 err1 = sqrt( srow + scol ) / abs(srow - scol);
                 err2 = sqrt( srow + scol ) / abs(srow + scol);
                 Qerr = abs(Q) * ( err1 + err2 );
-                %disp(['alpha (degree) = ', num2str(angle(index-1)), ' Q = ', num2str(Q), ' +- ', num2str(Qerr)]);
-                disp([num2str(angle(index-1)), ' ', num2str(Q), ' ', num2str(Qerr)]);
+                %disp(['alpha (degree) = ', num2str(angle(index-1)), ' Q =
+                %', num2str(Q), ' +- ', num2str(Qerr)]);
+                disp([num2str(angle(index-1)), ' ', num2str(srow), ' ', num2str(scol), ' ', num2str(Q), ' ', num2str(Qerr)]);  
                 Q_arr = [Q_arr Q];
                 if PAR.LOG == 1
                     disp(['Q = ',num2str(Q)]);

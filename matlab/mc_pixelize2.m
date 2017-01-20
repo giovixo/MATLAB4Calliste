@@ -12,13 +12,13 @@ function [ Apix ] = mc_pixelize2( A )
 %   Output: Apix is the pixelated 'photons history' array.
     
     % The detector size (mm)
-    X_DET = PAR.X_DET; %   200.;
-    Y_DET = PAR.Y_DET; % 200.;
-    Z_DET = PAR.Z_DET; % 20.;
+    X_DET = PAR.X_DET; 
+    Y_DET = PAR.Y_DET;
+    Z_DET = PAR.Z_DET; 
     % The voxel size (mm)
-    X_VOXEL = PAR.X_VOXEL; % 2.;
-    Y_VOXEL = PAR.Y_VOXEL; % 2.
-    Z_VOXEL = PAR.Z_VOXEL; %  2.;
+    X_VOXEL = PAR.X_VOXEL; 
+    Y_VOXEL = PAR.Y_VOXEL; 
+    Z_VOXEL = PAR.Z_VOXEL; 
     
     eventsWithInteraction    = 0;
     eventsWithoutInteraction = 0;
@@ -43,7 +43,9 @@ function [ Apix ] = mc_pixelize2( A )
             % Example: voxel = zeros(100, 100, 10);
             voxel = zeros( fix(X_DET / X_VOXEL), fix(Y_DET / Y_VOXEL), fix(Z_DET / Z_VOXEL) );
             for j = 1:noInt
-                ivox = fix( ( A(j, 3:5, i) + [X_DET / 2. - 1.e-9, Y_DET / 2. - 1.e-9, Z_DET / 2. - 1.e-9] ) / 2 ) + 1;
+                %ivox = fix( ( A(j, 3:5, i) * 2 + ( [X_DET / X_VOXEL - 1.e-9, Y_DET / Y_VOXEL - 1.e-9, Z_DET / Z_VOXEL - 1.e-9] ) / 2 ) ) + 1;
+                ivox(1:2) = fix( ( A(j, 3:4, i) / X_VOXEL + ( [X_DET / X_VOXEL - 1.e-9, Y_DET / Y_VOXEL - 1.e-9] ) / 2 ) ) + 1;
+                ivox(3) = fix( ( A(j, 5, i) / Z_VOXEL + ( Z_DET / Z_VOXEL - 1.e-9 ) / 2 ) ) + 1;
                 % Increment the energy inside the given voxel
                 voxel(ivox(1), ivox(2), ivox(3)) = voxel(ivox(1), ivox(2), ivox(3)) + A(j, 2, i);
             end
